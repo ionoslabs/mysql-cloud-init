@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get install build-essential mysql-server libmysqlclient-dev npm -y
+sudo apt-get install build-essential mysql-server libmysqlclient-dev npm -y
 
 sudo mysql -e "SET PASSWORD FOR root@localhost = PASSWORD('something');FLUSH PRIVILEGES;"
 
