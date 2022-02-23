@@ -1,0 +1,8 @@
+#cloud-config
+ 
+packages:
+ - apache2
+runcmd:
+- git clone git://github.com/ionoslabs/mysql-cloud-init /tmp/mysql-cloud-init
+- chmod +x /tmp/wp-install/mysql-install.sh
+- /tmp/wp-install/mysql-install.sh
