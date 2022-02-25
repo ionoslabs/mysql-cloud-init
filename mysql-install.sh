@@ -55,6 +55,12 @@ expect ~/secure_our_mysql.sh
 rm -v ~/secure_our_mysql.sh # Remove the generated Expect script
 #sudo apt-get -qq purge expect > /dev/null # Uninstall Expect, commented out in case you need Expect
 
+echo "Binding MYSQL to all interfaces"
+
+sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
+
+service mysql restart
+
 echo "MySQL setup completed. Insecure defaults are gone."
 
 echo "Your MYSQL root password has been set to="$MYSQL_ROOT_PASSWORD
