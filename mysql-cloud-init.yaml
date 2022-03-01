@@ -5,6 +5,8 @@ packages:
  - apache2
 
 runcmd:
+# this sets the default gateway to the NAT gateway
+- 
 - git clone git://github.com/ionoslabs/mysql-cloud-init /tmp/mysql-cloud-init
 - chmod +x /tmp/mysql-cloud-init/mysql-install.sh
 - /tmp/mysql-cloud-init/mysql-install.sh

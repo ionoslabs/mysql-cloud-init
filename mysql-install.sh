@@ -1,4 +1,7 @@
 #!/bin/bash
+# setting up as private network with NAT gateway, need to set default route on instance
+
+
 # Current script is running as root
 # Below creates random password to be used in mysql setup
 
@@ -7,11 +10,8 @@ export DEBIAN_FRONTEND=noninteractive
 MYSQL_ROOT_PASSWORD=`date |md5sum |cut -c '1-12'` # generates random password
 
 # Install MySQL
-# Suggestion from @dcarrith (http://serverfault.com/a/830352/344471):
 echo debconf mysql-server/root_password password $MYSQL_ROOT_PASSWORD | sudo debconf-set-selections
 echo debconf mysql-server/root_password_again password $MYSQL_ROOT_PASSWORD | sudo debconf-set-selections
-#sudo debconf-set-selections <<< "mysql-server-5.7 mysql-server/root_password password $MYSQL_ROOT_PASSWORD"
-#sudo debconf-set-selections <<< "mysql-server-5.7 mysql-server/root_password_again password $MYSQL_ROOT_PASSWORD"
 apt-get -qq install mysql-server > /dev/null # Install MySQL quietly
 
 # Install Expect
@@ -64,3 +64,7 @@ service mysql restart
 echo "MySQL setup completed. Insecure defaults are gone."
 
 echo "Your MYSQL root password has been set to="$MYSQL_ROOT_PASSWORD
+
+# create wpuser
+# create random password for wpuser
+# grant access to wpuser from IP address
