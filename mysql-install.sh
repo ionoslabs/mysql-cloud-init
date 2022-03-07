@@ -37,7 +37,7 @@ expect "Remove anonymous users? (Press y|Y for Yes, any other key for No) :"
 send "y\r"
 
 expect "Disallow root login remotely? (Press y|Y for Yes, any other key for No) :"
-send "y\r"
+send "n\r"
 
 expect "Remove test database and access to it? (Press y|Y for Yes, any other key for No) :"
 send "y\r"
