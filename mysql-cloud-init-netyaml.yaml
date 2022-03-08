@@ -1,27 +1,20 @@
 #cloud-config
-
+# this configuration of passing network yaml directly does not work in ionos/ubuntu 20.04
 #  ////////////////////////////////////////////////////////////////////////////////////////////////
 # use this section if creating a private network behind a NAT gateway set a static internal address for the instance
 
-write_files:
-- path: /etc/cloud/cloud.cfg.d/99-custom-networking.cfg
-  permissions: '0644'
-  content: |
-    network: {config: disabled}
-- path: /etc/netplan/config.yaml
-  permissions: '0644'
-  content: |
-    network:
-        version: 2
-        ethernets:
-            ens6:
-                dhcp4: false
-                addresses: [192.168.10.20/24]
-                gateway4: 192.168.10.1
-                nameservers:
-                  addresses: [1.1.1.1]
 
-
+network:
+  version: 2
+  ethernets:
+    ens6:
+      dhcp4: false
+      addresses:
+      - 192.168.10.20/24
+      gateway4: 192.168.10.1
+      nameservers:
+        addresses: [1.1.1.1]
+        
 runcmd:
  - rm /etc/netplan/50-cloud-init.yaml
  - rm /etc/netplan/01-netcfg.yaml
