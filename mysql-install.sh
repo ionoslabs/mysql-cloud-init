@@ -59,6 +59,16 @@ echo "Binding MYSQL to all interfaces"
 
 sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
 
+# create wordpress database, username and password
+
+echo "Creating MySQL user and database"
+
+/usr/bin/mysql -u root -e "CREATE DATABASE $db_name"
+/usr/bin/mysql -u root -e "CREATE USER '$db_user'@'%' IDENTIFIED BY '$db_password';"
+/usr/bin/mysql -u root -e "GRANT ALL PRIVILEGES ON $db_name.* TO '$db_user'@'%';"
+
+echo "done"
+
 service mysql restart
 
 echo "MySQL setup completed. Insecure defaults are gone."

@@ -1,0 +1,12 @@
+#cloud-config
+
+runcmd:
+ - echo "runcmd start"
+ - export db_name="testdb"
+ - export db_user="wpuser"
+ - export db_password="password1234"
+ - apt update
+ - git clone https://github.com/ionoslabs/mysql-cloud-init /tmp/mysql-cloud-init
+ - chmod +x /tmp/mysql-cloud-init/mysql-install.sh
+ - /tmp/mysql-cloud-init/mysql-install.sh
+ - echo "runcmd complete"
